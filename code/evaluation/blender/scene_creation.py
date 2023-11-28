@@ -27,7 +27,7 @@ with open(colorsPath) as file:
 ENDFRAME = bpy.context.scene.frame_end
 '''The integer of the last frame in the .blend file.'''
 FIXED_OBJECTS = ["Light.000", "Light.001", "Light.002"]
-SCALE_DIVISOR = 1000 # for Blender scene: convert mm to m
+SCALE_DIVISOR = 1000  # for Blender scene: convert mm to m
 
 
 def getRGBFromHex(hex:str) -> tuple:
@@ -137,7 +137,7 @@ def __addGround(size:tuple=(500, 500, 1), target:str="euro-pallet") -> None:
     bpy.ops.mesh.primitive_plane_add(size=1.0, 
                 enter_editmode=False, 
                 align='WORLD', 
-                location=(0,0,0))
+                location=(0, 0, 0))
                 # scale argument does not work here
     bpy.ops.transform.resize(value=size, 
                 orient_type='GLOBAL', 
@@ -161,10 +161,10 @@ def __addGround(size:tuple=(500, 500, 1), target:str="euro-pallet") -> None:
     nodes = tree.nodes
     bsdf = nodes["Principled BSDF"]    
     # make the bottom "transparent" -> white
-    color = (1, 1, 1, 1)#color = (0, 0.0684781, 0.278894, 1)
+    color = (1, 1, 1, 1)  # color = (0, 0.0684781, 0.278894, 1)
     bsdf.inputs["Base Color"].default_value = color
     bsdf.inputs["Alpha"].default_value = 1
-    bsdf.inputs["Emission"].default_value = (1,1,1,1)
+    bsdf.inputs["Emission Color"].default_value = (1, 1, 1, 1)
 
     bottomMaterial.diffuse_color = color
     ob = bpy.context.active_object
@@ -186,9 +186,9 @@ def __setMaterialAndEnableRigidBody(materialname:str) -> None:
         The name of the used material. Allowed materials are `"rc_part"` and `"pal_part"`.  
     '''
     if materialname == "rc_part":
-        matcolor = (0.0343398, 0.0466651, 0.061246, 1) # "space gray", HEX:343d46
+        matcolor = (0.0343398, 0.0466651, 0.061246, 1)  # "space gray", HEX:343d46
     elif materialname == "pal_part":
-        matcolor = (0.730461, 0.47932, 0.242281, 1) # "burlywood"
+        matcolor = (0.730461, 0.47932, 0.242281, 1)  # "burlywood"
 
     # set the color and material, respectively
     ob = bpy.context.active_object
