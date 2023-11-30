@@ -295,8 +295,8 @@ class PalletizingEnvironment(gym.Env):
 
         renderImage = Image.new("RGB", (1800, 900), color=(255, 255, 255))
         testStatus = Image.open(self.__Visualization.getFilenameOfImage()) 
-        testStatus = testStatus.resize((800,800))
-        renderImage.paste(testStatus, (0,0))
+        testStatus = testStatus.resize((800, 800))
+        renderImage.paste(testStatus, (0, 0))
 
         draw = ImageDraw.Draw(renderImage)
         if self.__Actions == []:

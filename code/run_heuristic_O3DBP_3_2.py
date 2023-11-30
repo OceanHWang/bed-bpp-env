@@ -40,14 +40,14 @@ if __name__ == "__main__":
     env = environment.PalletizingEnvironment()
     observation, info = env.reset(data_for_episodes=ORDERS_FOR_EPISODES)
     simenv = environment.SimPalEnv()
-    _, _ = simenv.reset(data_for_episodes = ORDERS_FOR_EPISODES)
+    _, _ = simenv.reset(data_for_episodes=ORDERS_FOR_EPISODES)
     heuristic.setSimEnv(simenv)
 
     # start simulation
     simDone = False
     while not(simDone):
         env.render()
-        action, successful = heuristic.getAction(observation, info) # User-defined policy function
+        action, successful = heuristic.getAction(observation, info)  # User-defined policy function
         if successful:
             observation, reward, episodeDone, info = env.step(action)
         else:
@@ -67,3 +67,6 @@ if __name__ == "__main__":
     # run evaluation
     cmd = ["python3", "script_evaluate_packing_plan.py", "--data", utils.PARSEDARGUMENTS["data"], "--packing_plan", utils.OUTPUTDIRECTORY.joinpath("packing_plans.json")]
     subprocess.run(cmd, shell=False)
+
+
+
